@@ -50,4 +50,12 @@ class Tanaman extends Model
     {
         return $this->belongsTo(Event::class, 'event_id');
     }
+    public function countLiveStatusByEventId($eventId)
+    {
+        $count = Tanaman::where('event_id', $eventId)
+            ->where('status_penanaman', 'hidup')
+            ->count();
+
+        return $count;
+    }
 }

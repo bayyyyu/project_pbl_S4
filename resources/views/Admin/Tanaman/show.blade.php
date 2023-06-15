@@ -81,13 +81,23 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-6 col-sm-3">
-                                                <strong style="font-weight: bolder">Deskripsi</strong>
-                                                @if ($tanaman->deskripsi)
-                                                    <p style="font-size:15px">{{ $tanaman->deskripsi }}</p>
+                                                <strong style="font-weight: bolder">Status Penanaman</strong>
+                                                @if ($tanaman->status_penanaman)
+                                                    <p style="font-size:15px">{{ $tanaman->status_penanaman }}
+                                                    </p>
                                                 @else
                                                     <p style="font-size:15px">-</p>
                                                 @endif
                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="col-md-12 col-sm-3 text-center">
+                                            <strong style="font-weight: bolder">Deskripsi</strong>
+                                            @if ($tanaman->deskripsi)
+                                                <p style="font-size:15px">{{ $tanaman->deskripsi }}</p>
+                                            @else
+                                                <p style="font-size:15px">-</p>
+                                            @endif
                                         </div>
                                         <hr>
                                         <h3 class="text-center">Foto</h3>

@@ -44,6 +44,37 @@ class Event extends Model
         }
         return true;
     }
+    function handleUploadFotoDokumentasi()
+    {
+
+        $this->handleDelete();
+        if (request()->hasFile('foto_dokumentasi')) {
+            $foto_dokumentasi = request()->file('foto_dokumentasi');
+            $destination = "images/Event/Foto Dokumentasi";
+            $randomStr = Str::random(5);
+            $filename = $this->id . "-" . time() . "-" . $randomStr . "." . $foto_dokumentasi->extension();
+            $url = $foto_dokumentasi->storeAs($destination, $filename);
+            $this->foto_dokumentasi = "" . $url;
+            $this->save();
+        }
+    }
+
+    function handleDeleteDokumentasi()
+    {
+        $foto_dokumentasi = $this->foto_dokumentasi;
+        if ($foto_dokumentasi) {
+            $path = public_path($foto_dokumentasi);
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
+        return true;
+    }
+
+    public function dokumentasi()
+    {
+        return $this->hasMany(Dokumentasi::class);
+    }
 }
 
 

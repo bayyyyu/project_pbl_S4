@@ -76,6 +76,7 @@ class TanamanController extends Controller
             $tanaman->lng = request('lng');
             $tanaman->deskripsi = request('deskripsi');
             $tanaman->event_id = request('event_id');
+            $tanaman->status_penanaman = "baru ditanam";
             $tanaman->user_id = Auth::user()->id;
 
             $tanaman->handleUploadFoto();

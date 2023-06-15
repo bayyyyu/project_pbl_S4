@@ -7,7 +7,7 @@
                     Kembali</a>
                 <div class="card">
                     <div class="card-header bg-dark">
-                        <p style="color:white"> Tambah Data Tanaman </p>
+                        <p style="color:white"> Edit Data Event </p>
                         <div class="card-tools">
                             </a>
                         </div>
@@ -19,20 +19,19 @@
                                 <div class="row">
                                     <div class="col-md-12 mt-5">
                                         <div class="card-body">
-                                            <form action="{{ url('Admin/Tanaman', $tanaman->id) }}" method="post"
+                                            <form action="{{ url('Admin/Event', $event->id) }}" method="post"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="" class="control-label">sample
-                                                                Penanaman</label>
-                                                            <input type="text" class="form-control" name="sample"
-                                                                 value="{{ $tanaman->sample }}">
-                                                            @if ($errors->has('sample'))
+                                                            <label for="" class="control-label"> Nama Event</label>
+                                                            <input type="text" class="form-control" name="nama_event"
+                                                                 value="{{ $event->nama_event }}">
+                                                            @if ($errors->has('nama_event'))
                                                                 <ul class="text-danger">
-                                                                    @foreach ($errors->get('sample') as $error)
+                                                                    @foreach ($errors->get('nama_event') as $error)
                                                                         <li>{{ $error }}</li>
                                                                     @endforeach
                                                                 </ul>
@@ -41,13 +40,12 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="" class="control-label">Umur
-                                                                Tanaman Saat Ditanam</label>
-                                                            <input type="text" class="form-control"
-                                                                name="umur_tanaman" value="{{ $tanaman->umur_tanaman }}">
-                                                            @if ($errors->has('umur_tanaman'))
+                                                            <label for="" class="control-label"> Tanggal Pelaksanaan</label>
+                                                            <input type="date" class="form-control" name="tanggal_event"
+                                                                 value="{{ $event->tanggal_event }}">
+                                                            @if ($errors->has('tanggal_event'))
                                                                 <ul class="text-danger">
-                                                                    @foreach ($errors->get('umur_tanaman') as $error)
+                                                                    @foreach ($errors->get('tanggal_event') as $error)
                                                                         <li>{{ $error }}</li>
                                                                     @endforeach
                                                                 </ul>
@@ -56,74 +54,12 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="" class="control-label">Tanggal
-                                                                Penanaman</label>
-                                                            <input type="date" class="form-control"
-                                                                name="tanggal_penanaman"
-                                                                value="{{ $tanaman->tanggal_penanaman }}">
-                                                            @if ($errors->any('tanggal_penanaman'))
+                                                            <label for="" class="control-label"> Jam Pelaksanaan</label>
+                                                            <input type="time" class="form-control" name="jam"
+                                                                 value="{{ $event->jam }}">
+                                                            @if ($errors->has('jam'))
                                                                 <ul class="text-danger">
-                                                                    @foreach ($errors->get('tanggal_penanaman') as $error)
-                                                                        <li>{{ $error }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="" class="control-label">Lokasi</label>
-                                                            <input type="text" class="form-control" name="lokasi"
-                                                                value="{{ $tanaman->lokasi }}">
-                                                            @if ($errors->any('lokasi'))
-                                                                <ul class="text-danger">
-                                                                    @foreach ($errors->get('lokasi') as $error)
-                                                                        <li>{{ $error }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="" class="control-label">Jenis
-                                                                Mangrove</label>
-                                                            <input type="text" class="form-control"
-                                                                name="jenis_mangrove"
-                                                                value="{{ $tanaman->jenis_mangrove }}">
-                                                            @if ($errors->any('jenis_mangrove'))
-                                                                <ul class="text-danger">
-                                                                    @foreach ($errors->get('jenis_mangrove') as $error)
-                                                                        <li>{{ $error }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="" class="control-label">Jenis
-                                                                Tanah</label>
-                                                            <input type="text" class="form-control"
-                                                                name="jenis_tanah" value="{{ $tanaman->jenis_tanah }}">
-                                                            @if ($errors->any('jenis_tanah'))
-                                                                <ul class="text-danger">
-                                                                    @foreach ($errors->get('jenis_tanah') as $error)
-                                                                        <li>{{ $error }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="" class="control-label">Masa
-                                                                Tumbuh</label>
-                                                            <input type="text" class="form-control"
-                                                                name="masa_tumbuh" value="{{ $tanaman->masa_tumbuh }}">
-                                                            @if ($errors->any('masa_tumbuh'))
-                                                                <ul class="text-danger">
-                                                                    @foreach ($errors->get('masa_tumbuh') as $error)
+                                                                    @foreach ($errors->get('jam') as $error)
                                                                         <li>{{ $error }}</li>
                                                                     @endforeach
                                                                 </ul>
@@ -134,13 +70,13 @@
                                                         <div class="form-group">
                                                             <label for="" class="control-label">Foto</label>
                                                             <input type="file" class="form-control" name="foto"
-                                                                accept="image/*" value="{{ $tanaman->foto }}">
+                                                                accept="image/*" value="{{ old('foto') }}">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="" class="control-label">Deskripsi</label>
-                                                    <textarea name="deskripsi" id="deskripsi" class="form-control">{{ value($tanaman->deskripsi) }}</textarea>
+                                                    <textarea name="deskripsi" id="deskripsi" class="form-control">{{ value($event->deskripsi) }}</textarea>
                                                 </div>
                                                 <br>
                                                 <div class="row">
@@ -153,7 +89,7 @@
                                                                 peta
                                                                 kemudian drag marker)</span>
                                                             <input type="float" class="form-control" name="lat"
-                                                                id="latitude" value="{{ $tanaman->lat }}">
+                                                                id="latitude" value="{{ $event->lat }}">
                                                             @if ($errors->has('lat'))
                                                                 <ul class="text-danger">
                                                                     @foreach ($errors->get('lat') as $error)
@@ -173,7 +109,7 @@
                                                                 peta
                                                                 kemudian drag marker)</span>
                                                             <input type="float" class="form-control" name="lng"
-                                                                id="longitude" value="{{ $tanaman->lng }}">
+                                                                id="longitude" value="{{ $event->lng }}">
                                                             @if ($errors->has('lng'))
                                                                 <ul class="text-danger">
                                                                     @foreach ($errors->get('lng') as $error)

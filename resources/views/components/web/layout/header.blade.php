@@ -30,10 +30,26 @@
                 <div class="mobile-menu-area-inner">
                     <ul class="lab-ul">
                         <li class="active">
-                            <a href="{{url('Home')}}">Home</a>
+                            <a href="{{url('Home')}}">Beranda</a>
                         </li>
-                        <li><a href="{{url('About')}}">About</a></li>
                         <li>
+                            <a href="{{url('About')}}">Tentang Kami</a>
+                        </li>
+                        <li class="{{ request()->is('Katalog Pohon','Event*','Penanaman') ? 'active2' : '' }}">
+		    				<a >Informasi</a>
+							<ul class="lab-ul">
+								<li class="{{ request()->is('Katalog-Pohon') ? 'active2' : '' }}">
+                                    <a href="{{url('Katalog-Pohon')}}">Katalog Pohon</a>
+                                </li>
+								<li class="{{ request()->is('Event*') ? 'active2' : '' }}">
+                                    <a href="{{url('Event')}}">Event</a>
+                                </li>
+                                <li class="{{ request()->is('Penanaman') ? 'active2' : '' }}">
+                                    <a href="{{url('Penanaman')}}">Penanaman</a>
+                                </li>
+							</ul>
+						</li>
+                        {{-- <li>
                             <a href="{{url('Informasi')}}">Informasi</a>
                         </li>
                         <li>
@@ -41,9 +57,9 @@
                         </li>
                         <li>
                            <a href="{{url('Tanam')}}">Penanaman</a>
-                        </li>
+                        </li> --}}
                         <li>
-                            <a href="GIS">SIG</a>
+                            <a href="{{url('GIS')}}">Peta Interaktif</a>
                         </li>
                         <li><a href="{{url('Kontak')}}">Contact</a></li>
                     </ul>
@@ -58,13 +74,13 @@
         <div class="header-top">
             <div class="container">
                 <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-5 col-12">
+                    {{-- <div class="col-lg-5 col-12">
                         <div class="logo py-2">
                             <a href="{{url('Home')}}"><img src="{{ url('/') }}/assets-web2/assets/images/logo/01D.png"
-                            alt="logo" style="height: 45px; width: 100%; object-fit:contain"></a>
+                            alt="logo" style="height: 30px; width: 100%; object-fit:contain"></a>
                         </div>
-                    </div>
-                    <div class="col-lg-7 col-12">
+                    </div> --}}
+                    <div class="col-lg-12 col-12">
                         <div class="ht-left">
                             <ul class="lab-ul d-flex flex-wrap justify-content-end">
                                 <li class="d-flex flex-wrap align-items-center">
@@ -72,7 +88,7 @@
                                         <img src="{{ url('/') }}/assets-web2/assets/images/header/01.png"
                                             alt="address" style="height:25px; width:40px; object-fit:contain">
                                     </div>
-                                    <div class="ht-add-content"  style="font-size:13px;">
+                                    <div class="ht-add-content"  style="font-size:10px;">
                                         <span>Sungai Awan Kanan</span>
                                         <span class="d-block text-bold">JL.Ketapang-Siduk</span>
                                     </div>
@@ -82,7 +98,7 @@
                                         <img src="{{ url('/') }}/assets-web2/assets/images/header/02.png"
                                             alt="email" style="height:25px; width:40px; object-fit:contain">
                                     </div>
-                                    <div class="ht-add-content" style="font-size:13px;">
+                                    <div class="ht-add-content" style="font-size:10px;">
                                         <span>Send Mail </span>
                                         <span class="d-block text-bold">bayu29kp@gmail.com</span>
                                     </div>
@@ -92,7 +108,7 @@
                                         <img src="{{ url('/') }}/assets-web2/assets/images/header/03.png"
                                             alt="call" style="height:25px; width:40px; object-fit:contain">
                                     </div>
-                                    <div class="ht-add-content" style="font-size:13px;">
+                                    <div class="ht-add-content" style="font-size:10px;">
                                         <span>Make Call </span>
                                         <span class="d-block text-bold">+88-6487-5962-563</span>
                                     </div>
@@ -116,26 +132,40 @@
                                 </div>
                                 <ul class="lab-ul">
                                     <li class="{{ request()->is('Home') ? 'active2' : '' }}">
-                                        <a href="{{url('Home')}}">Home</a>
+                                        <a href="{{url('Home')}}">Beranda</a>
                                     </li>
                                     <li class="{{ request()->is('About') ? 'active2' : '' }}">
-                                        <a href="{{url('About')}}">About</a>
+                                        <a href="{{url('About')}}">Tentang Kami</a>
                                     </li>
-                                    <li class="{{ request()->is('Informasi') ? 'active2' : '' }}">
-                                        <a href="{{url('Informasi')}}">Informasi</a>
+                                    <li class="{{ request()->is('Informasi','Event*','Penanaman','Katalog-Pohon') ? 'active2' : '' }}">
+										<a >Informasi</a>
+										<ul class="lab-ul">
+											<li class="{{ request()->is('Katalog-Pohon') ? 'active2' : '' }}">
+                                                <a href="{{url('Katalog-Pohon')}}">Katalog Pohon</a>
+                                            </li>
+											<li class="{{ request()->is('Event*') ? 'active2' : '' }}">
+                                                <a href="{{url('Event')}}">Event</a>
+                                            </li>
+                                            <li class="{{ request()->is('Penanaman') ? 'active2' : '' }}">
+                                                <a href="{{url('Penanaman')}}">Penanaman</a>
+                                            </li>
+										</ul>
+									</li>
+                                    {{-- <li class="{{ request()->is('Informasi') ? 'active2' : '' }}">
+                                        <a href="{{url('Informasi')}}">Katalog Pohon</a>
                                     </li>
-                                    <li class="{{ request()->is('Event') ? 'active2' : '' }}">
+                                    <li class="{{ request()->is('Event*') ? 'active2' : '' }}">
                                         <a href="{{url('Event')}}">Event</a>
                                     </li>
                                     <li class="{{ request()->is('Penanaman') ? 'active2' : '' }}">
                                         <a href="{{url('Penanaman')}}">Penanaman</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="{{ request()->is('GIS') ? 'active2' : '' }}">
-                                        <a href="GIS">Peta Interaktif</a>
+                                        <a href="{{url('GIS')}}">Peta Interaktif</a>
                                     </li>
                                     {{-- <li class="{{ request()->is('Kontak') ? 'active2' : '' }}">
-                                        <a href="{{url('Kontak')}}">Contact</a> --}}
-                                    </li> 
+                                        <a href="{{url('Kontak')}}">Contact</a>
+                                    </li>  --}}
                                     {{-- <li>
                                         @if (Auth::check() && Auth::user()->role == 'admin')
                                             <a href="{{ url('Admin/Dashboard') }}"><i class="icofont-user"></i>
@@ -155,7 +185,7 @@
     </header>
 <style>
     .lab-ul li.active2 a {
-        border-bottom: 2px solid white;
+        border-bottom: 3px solid white;
     }
 </style>
 

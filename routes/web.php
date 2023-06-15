@@ -5,14 +5,16 @@ use App\Http\Controllers\AdminControllers\DashboardController;
 use App\Http\Controllers\AdminControllers\TanamanController;
 use App\Http\Controllers\AdminControllers\UserController;
 use App\Http\Controllers\AdminControllers\AdminEventController;
-
+use App\Http\Controllers\AdminControllers\DokumentasiController;
 use App\Http\Controllers\WebControllers\ErrorController;
 use App\Http\Controllers\WebControllers\EventController;
 use App\Http\Controllers\WebControllers\GisController;
 use App\Http\Controllers\WebControllers\HomeController;
 use App\Http\Controllers\WebControllers\InformasiController;
+use App\Http\Controllers\WebControllers\KatalogPohonController;
 use App\Http\Controllers\WebControllers\ProfilController;
 use App\Http\Controllers\WebControllers\TanamController;
+use App\Models\Dokumentasi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,8 +59,12 @@ Route::get('Admin/Event/create', [AdminEventController::class, 'create'])->middl
 Route::post('Admin/Event', [AdminEventController::class, 'store'])->middleware('isError');
 Route::get('Admin/Event/{event}', [AdminEventController::class, 'show'])->middleware('isError');
 Route::get('Admin/Event/{event}/edit', [AdminEventController::class, 'edit'])->middleware('isError');
+Route::get('Admin/Event/{event}/dokumentasi', [AdminEventController::class, 'dokumentasi'])->middleware('isError');
 Route::put('Admin/Event/{event}', [AdminEventController::class, 'update'])->middleware('isError');
 Route::delete('Admin/Event/{event}', [AdminEventController::class, 'destroy'])->middleware('isError');
+// Route::get('Admin/Dokumentasi/{eventId}/create', [DokumentasiController::class, 'create'])->middleware('isError');
+// Route::post('Admin/Dokumentasi', [DokumentasiController::class, 'store'])->middleware('isError');
+
 
 // User
 Route::get('Admin/User', [UserController::class, 'index'])->middleware('isError');
@@ -77,11 +83,12 @@ Route::get('Profil', [ProfilController::class, 'index']);
 Route::get('/', [HomeController::class, 'index']);
 Route::get('Home', [HomeController::class, 'index']);
 
-//Web/iNFORMASI
-Route::get('Informasi', [InformasiController::class, 'index']);
+//Web/Katalog Pohon
+Route::get('Katalog-Pohon', [KatalogPohonController::class, 'index']);
 
 //Web/Event
 Route::get('Event', [EventController::class, 'index']);
+Route::get('Event/{event}', [EventController::class, 'show']);
 
 //Web/Tanam
 Route::get('Penanaman', [TanamController::class, 'index']);
@@ -92,3 +99,4 @@ Route::get('GIS', [GisController::class, 'index']);
 
 //Web/Informasi
 Route::get('Informasi', [InformasiController::class, 'index']);
+Route::get('Informasi/show', [InformasiController::class, 'show']);

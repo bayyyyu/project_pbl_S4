@@ -40,7 +40,7 @@
                                 <th width="150px">Aksi</th>
                                 <th>Sample</th>
                                 <th>Lokasi</th>
-                                <th width="10">Umur Saat Ditanam</th>
+                                <th width="10">Status Penanaman</th>
                                 <th>Foto</th>
                             </thead>
                             <tbody>
@@ -61,7 +61,7 @@
                                     </td>
                                     <td>{{$tanaman->sample}}</td>
                                     <td>{{$tanaman->lokasi}}</td>
-                                    <td>{{$tanaman->umur_tanaman}}</td>
+                                    <td>{{$tanaman->status_penanaman}}</td>
                                     <td><a href="{{ url('Admin/Tanaman', $tanaman->id) }}"><img src="{{ asset($tanaman->foto)}}" alt=""
                                                 style="width:100%; height:80px; object-fit:cover"></a></td>
                                 </tr>

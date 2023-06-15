@@ -74,6 +74,9 @@
     <link rel="stylesheet" type="text/css"
         href="{{ url('/') }}/assets/files/bower_components/animate.css/css/animate.css">
 
+    <link href="{{ url('/') }}/assets/files/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+    <link href="{{ url('/') }}/assets/files/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+
     {{-- <link rel="stylesheet" type="text/css"
         href="{{ url('/') }}/assets/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css" />
     <link rel="stylesheet" type="text/css"

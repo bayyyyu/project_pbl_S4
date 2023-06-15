@@ -29,7 +29,7 @@
                                             </div>
                                             <div class="col-md-6 col-sm-3">
                                                 <strong style="font-weight: bolder">Waktu Kegiatan</strong>
-                                                    <p style="font-size:15px">{!! date('d F Y', strtotime($event->tanggal_penanaman)) !!} jam {!! date('H:i', strtotime($event->jam)) !!}</p>
+                                                    <p style="font-size:15px">{!! date('d F Y', strtotime($event->tanggal_event)) !!} jam {!! date('H:i', strtotime($event->jam)) !!}</p>
                                             </div>
                                             <div class="col-md-6 col-sm-3">
                                                 <strong style="font-weight: bolder">Jumlah Penanaman</strong>
@@ -37,8 +37,9 @@
                                             </div>
                                             
                                         </div>
+                                        <hr>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 text-center">
                                                 <strong style="font-weight: bolder;">Deskripsi</strong>
                                                     <p style="font-size:15px">{{ $event->deskripsi }}</p>
                                             </div>

@@ -46,9 +46,9 @@
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
             <div class="pcoded-content">
-                <div class="row mt-2 ml-1 mr-1">
+                <div class="row ml-1 mr-1">
                     <div class="col-md-8">
-                        <div class="card">
+                        <div class="card  mt-2">
                             <div class="card-header" >
                                 Peta
                             </div>
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card  mt-2">
                             <div class="card-header" style="height: 50px">
                                 <ul class="nav nav-tabs" style=" border-bottom: none;">
                                     <li class="nav-item">
@@ -78,7 +78,7 @@
                                         <label for="event-checkbox" style="color:black">Pilih Penanaman Berdasarkan
                                             Event:</label>
                                         <div class="search-container">
-                                            <input type="text" id="search-input" placeholder="Cari nama event..." style="width: 70%; height:30px; padding-bottom: 4px; color:black">
+                                            <input type="text" id="search-input" placeholder="Cari nama event..." style="width: 70%; height:30px; padding-bottom: 4px; color:black" onkeydown="handleSearch(event)">
                                             <button class="search-clear btn btn-sm" style="border-color: #064635; color: #064635; display: none;" id="clear-button">Clear</button>
                                             <button onclick="searchEvent()" class="btn btn-sm"
                                                 style="background-color: #064635;color: white;">Cari</button>
@@ -100,10 +100,25 @@
                                         </div>
                                     </div>
                                     <div id="info" class="tab-pane fade" style="height: 60vh; overflow-y: auto;">
-                                        p
+                                        <div class="tab-content">
+                                            <label for="" style="color: black ">
+                                                Keterangan: 
+                                            </label>
+                                            <hr style="margin-top:0"> 
+                                            <img src="{{url('/')}}/assets-web2/assets/images/icon/calendar.png" alt="">
+                                            <label for="" style="color:black">: Event</label>
+                                            <br>
+                                            <img src="{{url('/')}}/assets-web2/assets/images/icon/tree.png" alt="">
+                                            <label for="" style="color:black">: Penanaman</label>
+                                        </div>
+                                        <div class="mt-3" style="text-align: center;">
+                                            <button onclick="resetMap()" class="btn" style="background-color: #064635; color: white;">Tampilkan Kembali Semua Marker Event</button>
+                                        </div>
                                     </div>
-                                    <div id="detail" class="tab-pane fade">
-                                        <!-- Konten untuk tab Detail -->
+                                    <div id="detail" class="tab-pane fade" style="height: 60vh; overflow-y: auto;">
+                                         <div id="detail-content">
+
+                                         </div>
                                     </div>
                                 </div>
                             </div>
@@ -148,6 +163,27 @@
         background-color: #F6FFF7;
 
     }
+    /* width */
+        ::-webkit-scrollbar {
+        width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: #064635; 
+        border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: #064635; 
+        }
 </style>
 </html>
 <script>
@@ -172,6 +208,7 @@
     var tanamanMarkersData = [];
     <?php foreach ($list_tanaman as $tanaman): ?>
     tanamanMarkersData.push({
+        id: <?php echo $tanaman->id; ?>,
         event_id: <?php echo $tanaman->eventPenanaman->id; ?>,
         eventPenanaman: "<?php echo $tanaman->eventPenanaman->nama_event; ?>",
         lat: <?php echo $tanaman->lat; ?>,
@@ -184,7 +221,8 @@
         masa_tumbuh: "<?php echo $tanaman->masa_tumbuh; ?>",
         umur_tanaman: "<?php echo $tanaman->umur_tanaman; ?>",
         foto: "<?php echo $tanaman->foto; ?>",
-        deskripsi: "<?php echo $tanaman->deskripsi; ?>"
+        deskripsi: "<?php echo $tanaman->deskripsi; ?>",
+        status_penanaman: "<?php echo $tanaman->status_penanaman; ?>"
     });
     <?php endforeach; ?>
 
@@ -230,6 +268,7 @@
 
             // Menambahkan event listener pada marker event
             marker.on('click', function() {
+                
                 // Menyembunyikan semua marker event yang lain
                 eventMarkers.forEach(function(eventMarker) {
                     if (eventMarker !== this) {
@@ -339,6 +378,8 @@
         };
 
         resetButton.addTo(map);
+
+        
     }
 
     function clearTanamanMarkers() {
@@ -483,8 +524,6 @@
 
     }
 
-    
-
     // Event listener untuk tombol "Clear"
     var clearButton = document.getElementById('clear-button');
     clearButton.addEventListener('click', function() {
@@ -551,5 +590,12 @@
             // Tampilkan konten tab yang sesuai dengan ID yang diklik
             $(target).addClass('show active');
         });
-    });    
+    });   
+    
+    function handleSearch(event) {
+            if (event.keyCode === 13) {
+                searchEvent();
+                event.preventDefault();
+            }
+        }
 </script>

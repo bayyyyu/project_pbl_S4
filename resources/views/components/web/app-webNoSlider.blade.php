@@ -18,6 +18,8 @@
 		<link rel="stylesheet" href="{{url('/')}}/assets-web2/assets/css/lightcase.css">
 		<link rel="stylesheet" href="{{url('/')}}/assets-web2/assets/css/swiper.min.css">
 		<link rel="stylesheet" href="{{url('/')}}/assets-web2/assets/css/style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
 	</head>
 
 	<body>
@@ -26,7 +28,7 @@
 
         
 		<!-- Banner Section Start Here -->
-		<x-web.layout.bannerNoSlider />
+		{{-- <x-web.layout.bannerNoSlider /> --}}
 		<!-- Banner Section Ending Here -->
 
 		{{ $slot }}
