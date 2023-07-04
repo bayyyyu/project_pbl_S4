@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminControllers\DashboardController;
 use App\Http\Controllers\AdminControllers\TanamanController;
 use App\Http\Controllers\AdminControllers\UserController;
 use App\Http\Controllers\AdminControllers\AdminEventController;
+use App\Http\Controllers\AdminControllers\AdminKatalogPohonController;
 use App\Http\Controllers\AdminControllers\DokumentasiController;
 use App\Http\Controllers\WebControllers\ErrorController;
 use App\Http\Controllers\WebControllers\EventController;
@@ -43,6 +44,15 @@ Route::post('Auth/Register', [AuthController::class, 'createAcount'])->middlewar
 
 // Dashboard
 Route::get('Admin/Dashboard', [DashboardController::class, 'index'])->middleware('isError');
+
+// katalog pohon
+Route::get('Admin/Katalog-Pohon', [AdminKatalogPohonController::class, 'index'])->middleware('isError');
+Route::get('Admin/Katalog-Pohon/create', [AdminKatalogPohonController::class, 'create'])->middleware('isError');
+Route::post('Admin/Katalog-Pohon', [AdminKatalogPohonController::class, 'store'])->middleware('isError');
+Route::get('Admin/Katalog-Pohon/{katalog_pohon}', [AdminKatalogPohonController::class, 'show'])->middleware('isError');
+Route::get('Admin/Katalog-Pohon/{katalog_pohon}/edit', [AdminKatalogPohonController::class, 'edit'])->middleware('isError');
+Route::put('Admin/Katalog-Pohon/{katalog_pohon}', [AdminKatalogPohonController::class, 'update'])->middleware('isError');
+Route::delete('Admin/Katalog-Pohon/{katalog_pohon}', [AdminKatalogPohonController::class, 'destroy'])->middleware('isError');
 
 // Tanaman
 Route::get('Admin/Tanaman', [TanamanController::class, 'index'])->middleware('isError');
@@ -85,6 +95,9 @@ Route::get('Home', [HomeController::class, 'index']);
 
 //Web/Katalog Pohon
 Route::get('Katalog-Pohon', [KatalogPohonController::class, 'index']);
+Route::get('/getDeskripsiPohon/{id}', [KatalogPohonController::class, 'getDeskripsiPohon']);
+Route::get('/Katalog-Pohon/{id}', [KatalogPohonController::class, 'show']);
+
 
 //Web/Event
 Route::get('Event', [EventController::class, 'index']);
@@ -92,7 +105,7 @@ Route::get('Event/{event}', [EventController::class, 'show']);
 
 //Web/Tanam
 Route::get('Penanaman', [TanamController::class, 'index']);
-Route::post('Penanaman', [TanamController::class, 'store']);
+Route::get('Penanaman/{tanaman}', [TanamController::class, 'show']);
 
 //Web/GIS
 Route::get('GIS', [GisController::class, 'index']);

@@ -50,7 +50,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                {{-- <div class="col-xl-3 col-md-6">
 					<div class="post-item">
 						<div class="post-title">
 									<h5>Penanaman</h5>
@@ -80,7 +80,7 @@
 							</div>
 						</div>		
 					</div>
-				</div>		
+				</div>		 --}}
                 <div class="col-xl-3 col-md-6">
                     <div class="post-item">
                         <div class="post-title">
@@ -125,8 +125,8 @@
     </div>
     <div class="footer-bottom">
         <div class="container">
-            <div class="section-wrapper">
-                <p class="text-center">Copyright &copy; <span class="default-color">Team PBL Teknologi Informasi POLITAP 2022
+            <div class="section-wrapper" >
+                <p class="text-center" style="color:#064635">Copyright &copy; <span class="default-color">Team PBL Teknologi Informasi POLITAP 2022
                         @if (date('Y') > '2022')
                             - {{ date('Y') }}
                         @endif.</span>All rights reserved</p>

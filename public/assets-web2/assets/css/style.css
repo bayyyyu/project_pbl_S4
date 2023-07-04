@@ -1905,8 +1905,9 @@ img {
   width: 100%;
   top: 0;
   z-index: 99;
-  background: #064635;
+  background: #ffffff;
   box-shadow: 0 0 3px rgba(81, 136, 136, 0.1);
+  border-bottom:2px solid #064635;
 }
 .header-section .header-area.menu-fixed .primary-menu .main-area .main-menu .logo {
   display: block;
@@ -2257,7 +2258,7 @@ img {
   font-size: 12px;
   opacity: 1;
   background: transparent;
-  border: 2px solid #fff;
+  border: 2px solid #064635;
 }
 .banner .banner-slider .swiper-pagination-bullet-active {
   width: 15px;

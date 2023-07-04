@@ -2,7 +2,7 @@
     <div class="navbar-wrapper">
         <div class="navbar-logo">
             <a href="index.html">
-                <img class="img-fluid" src="{{ url('/') }}/assets/files/assets/images/logo.png" alt="Theme-Logo" />
+                <img class="img-fluid" src="{{ url('/') }}/assets-web2/assets/images/logo/02.png" style="width:200px;margin-top:-10px" />
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="#!">
                 <i class="feather icon-menu icon-toggle-right"></i>

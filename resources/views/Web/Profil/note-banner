@@ -1,0 +1,202 @@
+<section class="banner">
+    <div class="banner-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="banner-slider-part">
+                    <img src="{{ url('/') }}/assets-web2/assets/images/banner/bg-images/1.png" alt="Your Image"
+                        style="position: absolute; right: 0;top:20%; max-height: 400px; width:600px; object-fit:cover; display:flex" />
+                    <x-utils.notif />
+                    <div class="container">
+                        <div class="row flex-row-reverse justify-content-center align-items-center">
+                            <div class="col-12">
+                                <div class="banner-content"
+                                    style="color:black; text-align:left; margin-left:50px; margin-top:-100px;">
+                                    <h3 class="banner-title">
+                                        Mulai Langkah Pertama Menghijaukan
+                                    </h3>
+                                    <h3 class="banner-title">
+                                        Bumi Dengan Berpartisipasi Di Event
+                                    </h3>
+                                    <h3 class="banner-title">
+                                        Penanaman
+                                    </h3>
+                                    <a href="{{ url('Event') }}"
+                                        class="lab-btn float-left"><span>PARTISIPASI</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="banner-slider-part">
+                    <img src="{{ url('/') }}/assets-web2/assets/images/banner/bg-images/2.png" alt="Your Image"
+                        style="position: absolute; right: 0;top:20%; max-height: 400px; width:600px; object-fit:cover; display:flex" />
+                    <x-utils.notif />
+                    <div class="container">
+                        <div class="row flex-row-reverse justify-content-center align-items-center">
+                            <div class="col-12">
+                                <div class="banner-content" style="color:black; text-align:left; margin-left:50px">
+                                    <h3 class="banner-title">
+                                        Temukan Informasi Mengenai
+                                    </h3>
+                                    <h3 class="banner-title">
+                                        Pohon Mangrove
+                                    </h3>
+                                    <a href="{{ url('Katalog-Pohon') }}" class="lab-btn float-left"><span>KATALOG
+                                            POHON</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="banner-slider-part">
+                    <img src="{{ url('/') }}/assets-web2/assets/images/banner/bg-images/3.png" alt="Your Image"
+                        style="position: absolute; right: 0;margin-right:150px; top:0; margin-top:50px;height: 400px; width:auto; object-fit:cover; display:flex" />
+                    <x-utils.notif />
+                    <div class="container">
+                        <div class="row flex-row-reverse justify-content-center align-items-center">
+                            <div class="col-12">
+                                <div class="banner-content" style="color:black; text-align:left; margin-left:50px">
+                                    <h3 class="banner-title">
+                                        Jelajahi Hasil Penanaman
+                                    </h3>
+                                    <h3 class="banner-title">
+                                        Pohon Mangrove
+                                    </h3>
+                                    <a href="{{ url('Penanaman') }}" class="lab-btn float-left"><span>LIHAT
+                                            PENANAMAN</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+<section class="mobile-banner">
+    <div class="banner-slider">
+        <div class="banner-slide">
+            <a href="">
+                <img src="{{ url('/') }}/assets-web2/assets/images/banner/bg-images/1.png">
+                <div class="banner-text text-center">
+                    <h2>Mulai Langkah Pertama</h2>
+                    <p> Menghijaukan Bumi Dengan Berpartisipasi Di Event Penanaman</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="banner-slide">
+            <img src="{{ url('/') }}/assets-web2/assets/images/banner/bg-images/2.png">
+            <div class="banner-text">
+                <h2>Temukan Informasi</h2>
+                <p>Mengenai Pohon Mangrove</p>
+            </div>
+        </div>
+
+        <div class="banner-slide">
+            <img src="{{ url('/') }}/assets-web2/assets/images/banner/bg-images/3.png">
+            <div class="banner-text">
+                <h2>Jelajahi </h2>
+                <p>Hasil Penanaman Pohon Mangrove</p>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .mobile-banner {
+        display: none;
+    }
+
+    .banner .swiper-pagination {
+        z-index: 10;
+    }
+
+    @media (max-width: 767px) {
+        .mobile-banner {
+            display: flex;
+        }
+
+        .banner-slider {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 2px solid #064635;
+            margin: 90px 10px 20px 10px;
+        }
+
+        .banner-slide {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            padding: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .banner-slide img {
+            max-width: 50%;
+            height: auto;
+            width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+            justify-content: center;
+            display: flex;
+
+        }
+
+        .banner-text {
+            display: block;
+            margin: 0 auto;
+            width: auto;
+            height: auto;
+            justify-content: center;
+        }
+
+        .banner-text h2 {
+            font-size: 30px;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: #064635;
+            color: rgb(255, 255, 255);
+        }
+
+        .banner-text p {
+            font-size: 20px;
+            hyphens: auto;
+            font-weight: bold
+        }
+        
+
+        .banner {
+            display: none;
+        }
+
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var slides = $(".banner-slide");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = "flex";
+            setTimeout(showSlides, 5000); // Ubah angka 5000 menjadi durasi slide (dalam milidetik)
+        }
+    });
+</script>

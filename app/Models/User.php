@@ -53,4 +53,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tanaman::class, 'user_id');
     }
+    function penanaman()
+    {
+        return $this->hasMany(Tanaman::class, 'user_id');
+    }
 }

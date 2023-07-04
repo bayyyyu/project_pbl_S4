@@ -18,6 +18,7 @@
 		<link rel="stylesheet" href="{{url('/')}}/assets-web2/assets/css/lightcase.css">
 		<link rel="stylesheet" href="{{url('/')}}/assets-web2/assets/css/swiper.min.css">
 		<link rel="stylesheet" href="{{url('/')}}/assets-web2/assets/css/style.css">
+		@stack('style')
 	</head>
 
 	<body>
@@ -27,6 +28,7 @@
         
 		<!-- Banner Section Start Here -->
 		<x-web.layout.banner />
+		<x-web.layout.mobile-banner />
 		<!-- Banner Section Ending Here -->
 
 		{{ $slot }}
@@ -50,5 +52,6 @@
 		<script src="{{url('/')}}/assets-web2/assets/js/isotope.pkgd.min.js"></script>
 		<script src="{{url('/')}}/assets-web2/assets/js/lightcase.js"></script>
 		<script src="{{url('/')}}/assets-web2/assets/js/functions.js"></script>
+		@stack('script')
 	</body>
 </html>

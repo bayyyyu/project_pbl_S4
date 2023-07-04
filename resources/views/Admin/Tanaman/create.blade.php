@@ -25,21 +25,6 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="" class="control-label">sample
-                                                                Penanaman</label>
-                                                            <input type="text" class="form-control" name="sample"
-                                                                value="{{ old('sample') }}">
-                                                            @if ($errors->has('sample'))
-                                                                <ul class="text-danger">
-                                                                    @foreach ($errors->get('sample') as $error)
-                                                                        <li>{{ $error }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
                                                             <label for="" class="control-label">Umur
                                                                 Tanaman Saat Ditanam</label>
                                                             <input type="text" class="form-control"
@@ -99,9 +84,9 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label for="" class="control-label">Jenis
+                                                            <label for="" class="control-label">Jenis / PH
                                                                 Tanah</label>
                                                             <input type="text" class="form-control"
                                                                 name="jenis_tanah" value="{{ old('jenis_tanah') }}">
@@ -114,7 +99,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="" class="control-label">Masa
                                                                 Pembibitan</label>
@@ -133,7 +118,8 @@
                                                         <div class="form-group">
                                                             <label for="" class="control-label">Event
                                                                 Penanaman</label>
-                                                            <select name="event_id" id="event_id" class="form-control js-example-tags" multiple="multiple"
+                                                            <select name="event_id" id="event_id"
+                                                                class="form-control js-example-tags" multiple="multiple"
                                                                 required>
                                                                 <option value="">Pilih Event Penanaman</option>
                                                                 @foreach ($list_event as $event)
@@ -150,12 +136,32 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="" class="control-label">Foto</label>
                                                             <input type="file" class="form-control" name="foto"
-                                                                accept="image/*" value="{{ old('foto') }}">
+                                                                onchange="previewImage()" id="fileInput"
+                                                                accept="image/*">
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <label for="" class="control-label">Preview</label>
+                                                        <img id="preview" src="#">
+
+                                                        <style>
+                                                            #preview {
+                                                                display: block;
+                                                                margin: 20px auto;
+                                                                width: 100%;
+                                                                height: 300px;
+                                                                margin-top:0;
+                                                                object-fit: contain;
+                                                                object-position: center;
+                                                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                                                            }
+                                                        </style>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -301,5 +307,19 @@
         L.control.defaultExtent().addTo(map);
 
         L.control.locate().addTo(map);
+
+        function previewImage() {
+            var preview = document.querySelector('#preview');
+            var file = document.querySelector('#fileInput').files[0];
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function() {
+                preview.src = reader.result;
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 </x-app>

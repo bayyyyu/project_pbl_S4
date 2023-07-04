@@ -74,7 +74,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="tab-content">
-                                    <div id="tools" class="tab-pane fade show active" style="height: 60vh; overflow-y: auto;">
+                                    <div id="tools" class="tab-pane fade show active" style="height: 60vh">
                                         <label for="event-checkbox" style="color:black">Pilih Penanaman Berdasarkan
                                             Event:</label>
                                         <div class="search-container">
@@ -84,7 +84,7 @@
                                                 style="background-color: #064635;color: white;">Cari</button>
                                         </div>
                                         <hr>
-                                        <div style="max-height: 200px; overflow-y: auto; max-width: 600px;">
+                                        <div style="max-height: 180px; overflow-y: auto; max-width: 600px;">
                                             @foreach ($list_event as $event)
                                                 <div id="event-checkboxes">
                                                     <input type="checkbox" id="event-checkbox-{{ $event->id }}"
@@ -209,8 +209,8 @@
     <?php foreach ($list_tanaman as $tanaman): ?>
     tanamanMarkersData.push({
         id: <?php echo $tanaman->id; ?>,
-        event_id: <?php echo $tanaman->eventPenanaman->id; ?>,
-        eventPenanaman: "<?php echo $tanaman->eventPenanaman->nama_event; ?>",
+        event_id: <?php echo isset($tanaman->eventPenanaman) ? $tanaman->eventPenanaman->id : 'null'; ?>,
+        eventPenanaman: "<?php echo $tanaman->eventPenanaman ? $tanaman->eventPenanaman->nama_event : ''; ?>",
         lat: <?php echo $tanaman->lat; ?>,
         lng: <?php echo $tanaman->lng; ?>,
         lokasi: "<?php echo $tanaman->lokasi; ?>",
@@ -229,8 +229,8 @@
     // Custom icon untuk event
     var greenIcon = L.icon({
         iconUrl: '{{ url('/') }}/assets-web2/assets/images/icon/calendar.png',
-        iconSize: [32, 35], // Ukuran icon dalam piksel
-        iconAnchor: [16, 32] // Anchor icon relatif terhadap posisi titik koordinat
+        iconSize: [32, 35], 
+        iconAnchor: [16, 32] 
     });
 
     // Custom icon untuk penanaman
@@ -268,6 +268,7 @@
 
             // Menambahkan event listener pada marker event
             marker.on('click', function() {
+                
                 
                 // Menyembunyikan semua marker event yang lain
                 eventMarkers.forEach(function(eventMarker) {
@@ -361,6 +362,7 @@
                         easeLinearity: 0.5
                     });
                 }
+                
             });
 
             eventMarkers.push(marker);
@@ -381,7 +383,9 @@
 
         
     }
+    
 
+    
     function clearTanamanMarkers() {
         tanamanMarkers.forEach(function(tanamanMarker) {
             map.removeLayer(tanamanMarker);

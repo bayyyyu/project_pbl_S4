@@ -1,4 +1,4 @@
-<x-web.app-webNoSlider>   
+<x-web.app-webNoSlider>
     <section class="shop-single" style="margin-top:10vh">
         <i class="icofont-arrow-left btn btn-lg custom-back-button" onclick="goBack()"></i>
         <div class="container">
@@ -73,7 +73,8 @@
                                             <div class="row">
                                                 <div class="col-lg-8">
                                                     <h5>Deskripsi</h5>
-                                                    <p style="color: black; text-align: justify;">{{ $event->deskripsi }}</p>
+                                                    <p style="color: black; text-align: justify;">
+                                                        {!! $event->deskripsi !!}</p>
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <h5>Keikutsertaan</h5>
@@ -85,7 +86,8 @@
                                                     @else
                                                         <div class="alert alert-success" role="alert"
                                                             style="color: black;width:100%">
-                                                            <p style="color: black; text-align: justify;">Jadwal Pelaksanaan:
+                                                            <p style="color: black; text-align: justify;">Jadwal
+                                                                Pelaksanaan:
                                                             </p>
                                                             <p style="color: black; text-align: justify;">
                                                                 {!! date('d F Y', strtotime($event->tanggal_event)) !!}</p>
@@ -98,33 +100,38 @@
                                         </div>
                                         <div id="dokumentasi" class="tab-pane fade">
                                             @if ($event->foto_dokumentasi)
-                                            {{-- <div class="wrapper" style="max-height:400px; overflow-y: auto; padding:20px">
+                                                {{-- <div class="wrapper" style="max-height:400px; overflow-y: auto; padding:20px">
                                                 <p>
                                                     {{$event->deskripsi_foto_dokumentasi}}
                                                 </p>
                                                 <img src="{{ asset($event->foto_dokumentasi) }}" alt="Foto Dokumentasi" style="width: 100%">
                                             </div> --}}
-                                            <div class="wrapper" style="max-height:400px; overflow-y: auto; padding:20px">
-                                                @if (pathinfo($event->foto_dokumentasi, PATHINFO_EXTENSION) === 'jpg' || pathinfo($event->foto_dokumentasi, PATHINFO_EXTENSION) === 'png')
-                                                    <p style="color:black">
-                                                        {{$event->deskripsi_foto_dokumentasi}}
-                                                    </p>
-                                                    <hr>
-                                                    <img src="{{ asset($event->foto_dokumentasi) }}" alt="Foto dokumentasi" style="width: 100%" loading="lazy">
-                                                @elseif (pathinfo($event->foto_dokumentasi, PATHINFO_EXTENSION) === 'mp4')  
-                                                    <p style="color:black">
-                                                        {{$event->deskripsi_foto_dokumentasi}}
-                                                    </p>
-                                                    <hr>    
-                                                    <video controls style="width: 100%;height:400px;object-fit:cover">
-                                                        <source src="{{ asset($event->foto_dokumentasi) }}" type="video/mp4" loading="lazy">
-                                                        Maaf, browser Anda tidak mendukung pemutaran video.
-                                                    </video>
-                                                @endif
-                                            </div>
+                                                <div class="wrapper"
+                                                    style="max-height:400px; overflow-y: auto; padding:20px">
+                                                    @if (pathinfo($event->foto_dokumentasi, PATHINFO_EXTENSION) === 'jpg' ||
+                                                            pathinfo($event->foto_dokumentasi, PATHINFO_EXTENSION) === 'png')
+                                                        <p style="color:black">
+                                                            {{ $event->deskripsi_foto_dokumentasi }}
+                                                        </p>
+                                                        <hr>
+                                                        <img src="{{ asset($event->foto_dokumentasi) }}"
+                                                            alt="Foto dokumentasi" style="width: 100%" loading="lazy">
+                                                    @elseif (pathinfo($event->foto_dokumentasi, PATHINFO_EXTENSION) === 'mp4')
+                                                        <p style="color:black">
+                                                            {{ $event->deskripsi_foto_dokumentasi }}
+                                                        </p>
+                                                        <hr>
+                                                        <video controls
+                                                            style="width: 100%;height:400px;object-fit:cover">
+                                                            <source src="{{ asset($event->foto_dokumentasi) }}"
+                                                                type="video/mp4" loading="lazy">
+                                                            Maaf, browser Anda tidak mendukung pemutaran video.
+                                                        </video>
+                                                    @endif
+                                                </div>
                                             @else
                                                 <div class="alert alert-info" role="alert"
-                                                style="color: black;width:100%">Belum ada dokumentsi yang di unggah
+                                                    style="color: black;width:100%">Belum ada dokumentsi yang di unggah
                                                 </div>
                                             @endif
                                         </div>
@@ -138,7 +145,16 @@
                                     <div class="text-center">
                                         <h5>Lokasi</h5>
                                         <hr>
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.837396913674!2d109.9854146!3d-1.7490984499999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e051fb95ef37c79%3A0x48398cc6608e4540!2sPantai%20Air%20Mata%20Permai!5e0!3m2!1sid!2sid!4v1686474487100!5m2!1sid!2sid" width="200" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        <div id="map" style="width: auto; height: 300px;"></div>
+                                        <hr>
+                                        <div class="card-detail" id="marker-info" style="display: none;">
+                                            <button class="btn btn-sm btn-close" onclick="closeDetail()" style="position: absolute; right:0; margin-right:25px; margin-top:5px; z-index: 2; color:white;font-weight:bolder; background-color:rgba(180, 5, 5, 0.527)">X</button>
+                                            <img id="marker-image" src=""
+                                                style="height: 100%; object-fit: cover;">
+                                            <p id="marker-title" style="color: black"></p>
+                                            {{-- <a id="detail-link" href="{{ url('GIS') }}" class="btn btn-sm"
+                                                style="background-color:#064635; color:white">Lihat Detail</a> --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -148,6 +164,10 @@
             </div>
     </section>
     <style>
+        #map {
+            z-index: 1;
+        }
+
         .nav-tabs .nav-item .nav-link.active {
             background-color: #064635;
             color: white;
@@ -169,40 +189,91 @@
             border-bottom: 4px solid #064635;
         }
 
-        .card/* width */
+        .card
+
+        /* width */
         ::-webkit-scrollbar {
-        width: 5px;
+            width: 5px;
         }
 
         /* Track */
         ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey; 
-        border-radius: 10px;
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
         }
-        
+
         /* Handle */
         ::-webkit-scrollbar-thumb {
-        background: #064635; 
-        border-radius: 10px;
+            background: #064635;
+            border-radius: 10px;
         }
 
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
-        background: #064635; 
+            background: #064635;
         }
-            .custom-back-button {
+
+        .custom-back-button {
             color: #064635;
             font-size: 35px;
             cursor: pointer;
-        } {
+        }
+
+            {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
-        
-        
     </style>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
     <script>
         function goBack() {
             window.history.back();
         }
+        function closeDetail() {
+            var detailCard = document.querySelector('.card-detail');
+            detailCard.style.display = 'none';
+        }
+
+        function initializeMap() {
+            var latitude = {{ $event->lat }};
+            var longitude = {{ $event->lng }};
+            var zoomLevel = 13;
+            var map = L.map('map').setView([latitude, longitude], zoomLevel);
+
+            var greenIcon = L.icon({
+                iconUrl: '{{ url('/') }}/assets-web2/assets/images/icon/calendar.png',
+                iconSize: [45, 50],
+                iconAnchor: [16, 32]
+            });
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap | Bayu Pratama'
+            }).addTo(map);
+
+            var marker = L.marker([{{ $event->lat }}, {{ $event->lng }}], {
+                icon: greenIcon
+            }).addTo(map);
+
+            marker.on('click', function() {
+                document.getElementById('marker-image').src = '{{ asset($event->foto) }}';
+                document.getElementById('marker-title').innerText = '{{ $event->nama_event }}';
+                document.getElementById('marker-info').style.display = 'block';
+
+                // Update the href attribute of the "Lihat Detail" link with the GIS URL and the event's marker coordinates
+                var detailLink = document.getElementById('detail-link');
+                var gisUrl = '{{ url('GIS') }}';
+                var markerCoordinates = [{{ $event->lat }}, {{ $event->lng }}];
+                detailLink.href = gisUrl + '?marker=' + markerCoordinates.join(',');
+            });
+
+            map.on('load', function() {
+                map.fitBounds(marker.getBounds());
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMap();
+        });
     </script>
 </x-web.app-webNoSlider>

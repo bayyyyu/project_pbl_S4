@@ -11,7 +11,7 @@ class Tanaman extends Model
     protected $table = 'tanaman';
     protected $fillable = 
     [
-        'id', 'lokasi','saple','tanggal_penanaman','jenis_mangrove', 'jenis_tanah',
+        'id', 'lokasi','sample','tanggal_penanaman','jenis_mangrove', 'jenis_tanah',
         'masa_tumbuh', 'umur_tanaman', 'lat', 'lng', 'user_id', 'foto', 'event_id', 'nama_event'
     ];
     public function user()
@@ -57,5 +57,9 @@ class Tanaman extends Model
             ->count();
 
         return $count;
+    }
+    function penulis()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

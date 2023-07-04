@@ -42,13 +42,12 @@
                     <div id="telahSelesai" class="tabcontent" style="display: none;">
                         <div class="card-block">
                             <div class=" dt-responsive table-responsive">
-                                <table id="dom-jqry" class="table table-striped table-bordered nowrap">
+                                <table id="dom-jqry-telah-selesai" class="table table-striped table-bordered nowrap">
                                     <thead>
-                                        <th width="10px">No</th>
+                                        <th >No</th>
                                         <th>Aksi</th>
                                         <th>Nama Event</th>
-                                        <th>Pohon Yang Hidup</th>
-                                        <th>Jumlah Penanaman</th>
+                                        <th >Jumlah Penanaman</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($list_event_telah_selesai->where('tanggal_event', '<', now()) as $event)
@@ -70,7 +69,6 @@
                                                 </div>
                                             </td>
                                             <td>{{$event->nama_event}}</td>
-                                            <td>{{ $jumlah_pohon_hidup[$event->id]}} pohon</td>
                                             <td>{{ $jumlah_penanaman[$event->id] }}</td>
                                         </tr>
                                         @endforeach
@@ -82,10 +80,10 @@
                     <div id="belumSelesai" class="tabcontent" style="display: none;">
                         <div class="card-block">
                             <div class=" dt-responsive table-responsive">
-                                <table id="dom-jqry" class="table table-striped table-bordered nowrap">
+                                <table id="dom-jqry-belum-selesai" class="table table-striped table-bordered nowrap">
                                     <thead>
-                                        <th width="10px">No</th>
-                                        <th>Aksi</th>
+                                        <th>No</th>
+                                        <th  width="100px">Aksi</th>
                                         <th>Nama Event</th>
                                         <th>Pohon Yang Hidup</th>
                                         <th>Jumlah Penanaman</th>
@@ -136,7 +134,10 @@
         }
 </style>
 <script>
-        
+        $(document).ready(function() {
+            $('#dom-jqry-telah-selesai').DataTable();
+            $('#dom-jqry-belum-selesai').DataTable();
+        });
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             // Menyembunyikan semua konten tab

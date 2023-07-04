@@ -58,10 +58,18 @@ class AdminEventController extends Controller
     public function show(Event $event)
     {
         $data['event'] = $event;
+
+        // Menghitung jumlah status_penanaman "hidup" dengan event_id yang sama
+        $jumlah_pohon_hidup = Tanaman::where('event_id', $event->id)
+            ->where('status_penanaman', 'hidup')
+            ->count();
+        $data['jumlah_pohon_hidup'][$event->id] = $jumlah_pohon_hidup;
+
         $jumlahPenanaman = DB::table('tanaman')
         ->where('event_id', $event->id)
             ->count();
         $data['jumlah_penanaman'] = $jumlahPenanaman;
+        
         return view('Admin.Event.show', $data);
     }
 
@@ -75,7 +83,7 @@ class AdminEventController extends Controller
         $data['event'] = $event;
         return view('Admin.Event.dokumentasi', $data);
     }
-    function update(Event $event, Request $request)
+    function update(Event $event)
     {
         if (request('nama_event')) $event->nama_event = (request('nama_event'));
         if (request('tanggal_event')) $event->tanggal_event = (request('tanggal_event'));

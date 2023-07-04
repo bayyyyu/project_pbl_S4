@@ -1,197 +1,189 @@
 <x-web.app-webNoSlider>
-    <div class="blog-section blog-page padding-tb">
+    <div class="blog-section blog-page mt-5">
         <div class="container">
+            <div class="judul-atas" style="margin-top:70px">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb" style="background-color:#F6FFF7">
+                        <li class="breadcrumb-item"><a href="{{ url('Home') }}">Beranda</a></li>
+                        <li class="breadcrumb-item" style="color:black">Informasi</li>
+                        <li class="breadcrumb-item active" aria-current="page" style="color:#045F50">Penanaman</li>
+                    </ol>
+                </nav>
+            </div>
             <div class="section-wrapper">
                 <div class="row justify-content-center">
-                    <div class="col-lg-9 col-12">
+                    <div class=" col-12">
                         <article>
-                            @foreach ($list_tanaman as $tanaman)
-                            <div class="post-item-2">
-                                <div class="post-inner">
-                                    <div class="post-thumb">
-                                        <a href="blog-single.html">
-                                            <img src="{{asset($tanaman->foto)}}" alt="blog">
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <ul class="lab-ul post-date">
-                                            <li><span>{{$tanaman->created_at->formatLocalized('%d %B %Y')}}</span></li>
-                                            <li><span>By <a href="#">Sahjahan Sagor</a></span></li>
-                                        </ul>
-                                        <a href="blog-single.html">
-                                            <h3>Jenis mangrove {{$tanaman->jenis_mangrove}}</h3>
-                                        </a>
-                                        <p>{{$tanaman->deskripsi}}</p>
-                                        <div class="d-flex flex-wrap justify-content-between more-com">
-                                            <div class="text-btn">
-                                                <a href="blog-single.html"><span>Read More<i
-                                                            class="fa fa-angle-double-right"></i></span></a>
-                                            </div>
-                                            <div class="comment-visi">
-                                                <span><i class="far fa-comment"></i> <a href="#">3
-                                                        Comment</a></span>
-                                                <span class="hart"><i class="far fa-heart"></i> <a
-                                                        href="#">Like</a></span>
-                                            </div>
-                                        </div>
+                            <div class="tabcontent">
+                                <div class="shop-title d-flex flex-wrap justify-content-between ">
+                                    <p>
+                                        Daftar Penanaman
+                                    </p>
+                                    <div class="product-view-mode">
+                                        <a class="active" data-target="grids"><i class="icofont-ghost"></i></a>
                                     </div>
                                 </div>
-                            </div>                                 
-                            @endforeach
-                            <div class="paginations">
-                                <ul class="lab-ul d-flex flex-wrap justify-content-center">
-                                    <li>
-                                        <a href="#"><i class="icofont-rounded-double-left"></i></a>
-                                    </li>
-                                    <li class="d-none d-sm-block">
-                                        <a href="#">1</a>
-                                    </li>
-                                    <li class="d-none d-sm-block">
-                                        <a href="#">2</a>
-                                    </li>
-                                    <li class="d-none d-sm-block">
-                                        <a class="dot">...</a>
-                                    </li>
-                                    <li class="d-none d-sm-block">
-                                        <a href="#">5</a>
-                                    </li>
-                                    <li class="d-none d-sm-block">
-                                        <a href="#"><i class="icofont-rounded-double-right"></i></a>
-                                    </li>
-                                </ul>
+                                <div class="shop-product-wrap grids row ">
+                                    @foreach ($list_tanaman as $tanaman)
+                                        <div class="col-lg-4 col-md-6 col-12 mb-3">
+                                            <div class="campaign-card">
+                                                <img src="{{ asset($tanaman->foto) }}"
+                                                    style="height:170px; object-fit:cover">
+                                                <div class="campaign-content">
+                                                    <h3>Penanaman pada event {{ $tanaman->eventPenanaman->nama_event }}
+                                                    </h3>
+                                                    <p>{!! substr(nl2br($tanaman->deskripsi), 0, 100) !!}..... </p>
+                                                </div>
+                                                <div class="action-buttons">
+                                                    <a href="{{ url('Penanaman', $tanaman->id) }}"
+                                                        class="btn btn-sm">Selengkapnya</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-center mt-2">
+                                    {{ $list_tanaman->onEachSide(1)->links() }}
+                                </div>
+                                <div class="container">
+                                    <div class="text-center">
+                                        <p style="color: black; font-size:12px; font-weight:inherit">
+                                            Menampilkan
+                                            {{ $list_tanaman->firstItem() }}
+                                            Sampai
+                                            {{ $list_tanaman->lastItem() }}
+                                            Dari
+                                            {{ $list_tanaman->total() }}
+                                            Item
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
                             </div>
                         </article>
-                    </div>
-                    <div class="col-lg-3 col-md-7 col-12">
-                        <aside>
-                            <div class="widget widget-category">
-                                <div class="widget-header">
-                                    <h5>Event </h5>
-                                </div>
-                                <ul class="lab-ul widget-wrapper">
-                                    <li>
-                                        <a href="#" class="d-flex flex-wrap justify-content-between"><span>Show
-                                                all</span><span>(148)</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="d-flex flex-wrap justify-content-between"><span>Business</span><span>(20)</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="d-flex flex-wrap justify-content-between"><span>Creative</span><span>(25)</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="d-flex flex-wrap justify-content-between"><span>Inspiation</span><span>(30)</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="d-flex flex-wrap justify-content-between"><span>News</span><span>(28)</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="d-flex flex-wrap justify-content-between"><span>Photography</span><span>(20)</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="d-flex flex-wrap justify-content-between"><span>Smart</span><span>(25)</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="widget widget-post">
-                                <div class="widget-header">
-                                    <h5>Recent Post</h5>
-                                </div>
-                                <ul class="lab-ul widget-wrapper">
-                                    <li class="d-flex flex-wrap justify-content-between">
-                                        <div class="post-thumb">
-                                            <a href="blog-single.html"><img src="assets/images/product/01.jpg"
-                                                    alt="product"></a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="blog-single.html">
-                                                <h6>Conveniently utilize premier metho.</h6>
-                                            </a>
-                                            <p>04 February 2019</p>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex flex-wrap justify-content-between">
-                                        <div class="post-thumb">
-                                            <a href="blog-single.html"><img src="assets/images/product/02.jpg"
-                                                    alt="product"></a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="blog-single.html">
-                                                <h6>Seamlessly fashion customiz before.</h6>
-                                            </a>
-                                            <p>04 February 2019</p>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex flex-wrap justify-content-between">
-                                        <div class="post-thumb">
-                                            <a href="blog-single.html"><img src="assets/images/product/03.jpg"
-                                                    alt="product"></a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="blog-single.html">
-                                                <h6>Conveniently utilize premier metho.</h6>
-                                            </a>
-                                            <p>04 February 2019</p>
-                                        </div>
-                                    </li>
-                                    <li class="d-flex flex-wrap justify-content-between">
-                                        <div class="post-thumb">
-                                            <a href="blog-single.html"><img src="assets/images/product/04.jpg"
-                                                    alt="product"></a>
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="blog-single.html">
-                                                <h6>Seamlessly fashion customiz before.</h6>
-                                            </a>
-                                            <p>04 February 2019</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="widget widget-instagram">
-                                <div class="widget-header">
-                                    <h5>Instagram</h5>
-                                </div>
-                                <ul class="lab-ul widget-wrapper d-flex flex-wrap justify-content-center">
-                                    <li><a href="#"><img src="assets/images/team/01.jpg" alt="team"></a>
-                                    </li>
-                                    <li><a href="#"><img src="assets/images/team/02.jpg" alt="team"></a>
-                                    </li>
-                                    <li><a href="#"><img src="assets/images/team/03.jpg" alt="team"></a>
-                                    </li>
-                                    <li><a href="#"><img src="assets/images/team/04.jpg" alt="team"></a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="widget widget-tags">
-                                <div class="widget-header">
-                                    <h5>Featured tags</h5>
-                                </div>
-                                <ul class="lab-ul widget-wrapper">
-                                    <li><a href="#">envato</a></li>
-                                    <li><a href="#">themeforest</a></li>
-                                    <li><a href="#">codecanyon</a></li>
-                                    <li><a href="#">videohive</a></li>
-                                    <li><a href="#">audiojungle</a></li>
-                                    <li><a href="#">3docean</a></li>
-                                    <li><a href="#">envato</a></li>
-                                    <li><a href="#">themeforest</a></li>
-                                    <li><a href="#">codecanyon</a></li>
-                                </ul>
-                            </div>
-                        </aside>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+        /* Style untuk tombol tab-link */
+        .tab button {
+            float: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Style untuk tombol tab-link aktif */
+        .tab button.active {
+            background-color: #064635 !important;
+            color: white !important;
+        }
+
+        .search::-webkit-input-placeholder {
+            color: #064635;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        #searchInput {
+            margin-right: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .search-container {
+                flex-direction: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .tab {
+                text-align: center;
+            }
+
+            .tab button {
+                float: none;
+                display: inline-block;
+
+            }
+        }
+
+        /*card*/
+        .campaign-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            height: 400px
+        }
+
+        .action-buttons {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+
+        }
+
+        .action-buttons .status {
+            color: black;
+            font-size: 15px;
+        }
+
+        .action-buttons .btn {
+            display: inline-block;
+            background-color: #064635;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .campaign-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .campaign-content {
+            padding: 16px;
+        }
+
+        .campaign-content h3 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .campaign-content p {
+            margin-bottom: 12px;
+        }
+
+        /* Pagination*/
+        .pagination .page-item.active .page-link {
+            background-color: #064635;
+            color: white;
+        }
+
+        .pagination .page-item:not(.disabled):first-child .page-link::before {
+            content: '\2039';
+        }
+
+        .pagination .page-item:not(.disabled):last-child .page-link::before {
+            content: '\203A';
+        }
+    </style>
 </x-web.app-webNoSlider>

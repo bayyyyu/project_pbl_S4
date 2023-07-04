@@ -33,15 +33,21 @@
                                             </div>
                                             <div class="col-md-6 col-sm-3">
                                                 <strong style="font-weight: bolder">Jumlah Penanaman</strong>
-                                                    <p style="font-size:15px">{{ $jumlah_penanaman }}</p>
+                                                    <p style="font-size:15px">{{ $jumlah_penanaman }} pohon</p>
+                                            </div>
+                                            <div class="col-md-6 col-sm-3">
+                                                <strong style="font-weight: bolder">Jumlah Pohon Yang Hidup</strong>
+                                                    <p style="font-size:15px">{{ $jumlah_pohon_hidup[$event->id]}} pohon</p>
                                             </div>
                                             
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-md-12 text-center">
-                                                <strong style="font-weight: bolder;">Deskripsi</strong>
-                                                    <p style="font-size:15px">{{ $event->deskripsi }}</p>
+                                            <div class="col-md-12">
+                                                <div class="text-center">
+                                                    <strong style="font-weight: bolder;">Deskripsi</strong>
+                                                </div>
+                                                <p style="font-size:15px">{!! $event->deskripsi !!}</p>
                                             </div>
                                         </div>
                                         <hr>

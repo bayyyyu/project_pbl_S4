@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Admindek {{ $title }}</title>
+    <title>Admin | POKDARWIS {{ $title }}</title>
 
 
     <!--[if lt IE 10]>
@@ -19,7 +19,7 @@
         content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="colorlib" />
 
-    <link rel="icon" href="{{ url('/') }}/assets/files/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ url('/') }}/assets/files/assets/images/01.ico" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
@@ -83,6 +83,7 @@
         href="{{ url('/') }}/assets/files/bower_components/multiselect/css/multi-select.css" /> --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
+    <link rel="stylesheet" href="myProjects/webProject/icofont/css/icofont.min.css">
     @stack('style')
 </head>
 

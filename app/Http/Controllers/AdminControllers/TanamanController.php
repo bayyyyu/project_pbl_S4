@@ -8,6 +8,7 @@ use App\Models\Tanaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class TanamanController extends Controller
 {
@@ -41,7 +42,6 @@ class TanamanController extends Controller
                 'lat' => 'required',
                 'lng' => 'required',
                 'deskripsi' => 'required',
-                'sample' => 'required',
                 'tanggal_penanaman' => 'required',
                 'jenis_mangrove' => 'required',
                 'jenis_tanah' => 'required',
@@ -53,7 +53,6 @@ class TanamanController extends Controller
                 'lat.required' => 'latitude Wajib Diisi',
                 'lng.required' => 'longitude Wajib Diisi',
                 'deskripsi.required' => 'deskripsi Wajib Diisi',
-                'sample.required' => 'Sample Penanaman Wajib Diisi',
                 'tanggal_penanaman.required' => 'Tanggal Penanaman Wajib Diisi',
                 'jenis_mangrove.required' => 'Jenis Mangrove Wajib Diisi',
                 'jenis_tanah.required' => 'Jenis Tanah Wajib Diisi',
@@ -65,7 +64,7 @@ class TanamanController extends Controller
 
             // memeriksa apakah pengguna sudah login
             $tanaman = new Tanaman;
-            $tanaman->sample = request('sample');
+            $tanaman->sample = Str::random(7);
             $tanaman->tanggal_penanaman = request('tanggal_penanaman');
             $tanaman->jenis_mangrove = request('jenis_mangrove');
             $tanaman->jenis_tanah = request('jenis_tanah');
@@ -104,16 +103,17 @@ class TanamanController extends Controller
 
     function update(Tanaman $tanaman)
     {
-        $tanaman->sample = request('sample');
-        $tanaman->tanggal_penanaman = request('tanggal_penanaman');
-        $tanaman->jenis_mangrove = request('jenis_mangrove');
-        $tanaman->jenis_tanah = request('jenis_tanah');
-        $tanaman->masa_tumbuh = request('masa_tumbuh');
-        $tanaman->lokasi = request('lokasi');
-        $tanaman->umur_tanaman = request('umur_tanaman');
-        $tanaman->lat = request('lat');
-        $tanaman->lng = request('lng');
-        $tanaman->deskripsi = request('deskripsi');
+        if (request('sample')) $tanaman->sample = (request('sample'));
+        if (request('tanggal_penanaman')) $tanaman->tanggal_penanaman = (request('tanggal_penanaman'));
+        if (request('jenis_mangrove')) $tanaman->jenis_mangrove = (request('jenis_mangrove'));
+        if (request('jenis_tanah')) $tanaman->jenis_tanah = (request('jenis_tanah'));
+        if (request('masa_tumbuh')) $tanaman->masa_tumbuh = (request('masa_tumbuh'));
+        if (request('lokasi')) $tanaman->lokasi = (request('lokasi'));
+        if (request('umur_tanaman')) $tanaman->umur_tanaman = (request('umur_tanaman'));
+        if (request('lat')) $tanaman->lat = (request('lat'));
+        if (request('lng')) $tanaman->lng = (request('lng'));
+        if (request('deskripsi')) $tanaman->deskripsi = (request('deskripsi'));
+        $tanaman->status_penanaman = request('status_penanaman');
         $tanaman->event_id = request('event_id');
         $tanaman->user_id = Auth::user()->id;
 
